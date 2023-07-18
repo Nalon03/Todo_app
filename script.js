@@ -108,38 +108,75 @@ class Theme {
     this.todoUl.addEventListener('dragstart', this.dragStartHandler.bind(this));
     this.todoUl.addEventListener('dragover', this.dragOverHandler.bind(this));
     this.todoUl.addEventListener('dragend', this.dragEndHandler.bind(this));
+    this.todoUl.addEventListener('touchstart', this.touchStartHandler.bind(this));
+    this.todoUl.addEventListener('touchmove', this.touchMoveHandler.bind(this));
+    this.todoUl.addEventListener('touchend', this.touchEndHandler.bind(this));
 
-  
       this.renderTodos();
     }
   
-// Drag start event handler
-dragStartHandler(e) {
-  const todoItem = e.target.closest('.todo-item');
-  if (todoItem) {
-    e.dataTransfer.setData('text/plain', todoItem.id);
+  // Drag start event handler
+  dragStartHandler(e) {
+    const todoItem = e.target.closest('.todo-item');
+    if (todoItem) {
+      e.dataTransfer.setData('text/plain', todoItem.id);
+    }
   }
-}
 
-// Drag over event handler
-dragOverHandler(e) {
-  e.preventDefault();
-  const afterElement = this.getDragAfterElement(this.todoUl, e.clientY);
-  const draggable = document.querySelector('.ondrag');
-  if (afterElement == null) {
-    this.todoUl.appendChild(draggable);
-  } else {
-    this.todoUl.insertBefore(draggable, afterElement);
+  // Drag over event handler
+  dragOverHandler(e) {
+    e.preventDefault();
+    const afterElement = this.getDragAfterElement(this.todoUl, e.clientY);
+    const draggable = document.querySelector('.ondrag');
+    if (afterElement == null) {
+      this.todoUl.appendChild(draggable);
+    } else {
+      this.todoUl.insertBefore(draggable, afterElement);
+    }
   }
-}
 
-// Drag end event handler
-dragEndHandler() {
-  const draggable = document.querySelector('.ondrag');
-  if (draggable) {
-    draggable.classList.remove('ondrag');
+  // Drag end event handler
+  dragEndHandler() {
+    const draggable = document.querySelector('.ondrag');
+    if (draggable) {
+      draggable.classList.remove('ondrag');
+    }
   }
-}
+
+  // Touch start event handler
+  touchStartHandler(e) {
+    const todoItem = e.target.closest('.todo-item');
+    if (todoItem) {
+      e.preventDefault();
+      this.touchInitialPosition = e.touches[0].clientY;
+      todoItem.classList.add('ondrag');
+    }
+  }
+
+  // Touch move event handler
+  touchMoveHandler(e) {
+    const todoItem = document.querySelector('.ondrag');
+    if (todoItem) {
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      const afterElement = this.getDragAfterElement(this.todoUl, touchY);
+      if (afterElement == null) {
+        this.todoUl.appendChild(todoItem);
+      } else {
+        this.todoUl.insertBefore(todoItem, afterElement);
+      }
+    }
+  }
+
+  // Touch end event handler
+  touchEndHandler() {
+    const todoItem = document.querySelector('.ondrag');
+    if (todoItem) {
+      todoItem.classList.remove('ondrag');
+    }
+  }
+
+
 
     // counts active todo items
     activeTodoCount() {
