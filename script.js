@@ -221,24 +221,29 @@ class Theme {
       });
     }
   
-    updateLocalStorage() {
-      const todos = [...this.todoUl.querySelectorAll('.todo-item')].map((todo) => ({
-        id: todo.id,
-        text: todo.querySelector('li').textContent,
-        completed: todo.classList.contains('strike'),
-      }));
-      localStorage.setItem('todos', JSON.stringify(todos));
-    }
+   // TodoItem class
+
+updateLocalStorage() {
+  const todos = [...this.todoUl.querySelectorAll('.todo-item')].map((todo) => ({
+    id: todo.id,
+    text: todo.querySelector('li').textContent,
+    completed: todo.classList.contains('strike'),
+  }));
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
   
-    renderTodos() {
-      const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-      storedTodos.forEach((todo) => {
-        const [todoItem, checkLabel, todoLi, deleteBtn] = this.todoGenerator(todo.text);
-        todoItem.id = todo.id;
-        if (todo.completed) {
-          todoItem.classList.add('strike');
-        }
-        this.todoUl.append(todoItem);
+renderTodos() {
+  const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+  storedTodos.forEach((todo) => {
+    const [todoItem, checkLabel, todoLi, deleteBtn] = this.todoGenerator(todo.text);
+    todoItem.id = todo.id;
+    if (todo.completed) {
+      todoItem.classList.add('strike');
+      checkLabel.querySelector('input').checked = true;
+    }
+    this.todoUl.append(todoItem);
+
   
         // Attach event listeners to the newly rendered todo items
         todoItem.addEventListener('click', (e) => {
