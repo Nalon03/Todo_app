@@ -307,11 +307,11 @@ class Theme {
     e.preventDefault();
     const allBtn = this.todo.filterBox.querySelector('.all');
     const liveBtn = this.todo.filterBox.querySelector('.live');
-    const completedBtn = this.todo.filterBox.querySelector('.completed');
+    const completedBtn = this.todo.filterBox.querySelector('.completed-btn');
   
     let refValue;
   
-    if (e.target.classList.contains('completed')) {
+    if (e.target.classList.contains('completed-btn')) {
       refValue = 'completed';
       allBtn?.classList.remove('active');
       liveBtn?.classList.remove('active');
