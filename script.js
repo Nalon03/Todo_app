@@ -103,10 +103,44 @@ class Theme {
       this.addTodoBtn.addEventListener('click', this.addTodo.bind(this));
       this.clearCompletedBtn.addEventListener('click', this.clearCompletedHandler.bind(this));
       this.filter = new Filters(this);
+
+      // Initialize the drag and drop functionality
+    this.todoUl.addEventListener('dragstart', this.dragStartHandler.bind(this));
+    this.todoUl.addEventListener('dragover', this.dragOverHandler.bind(this));
+    this.todoUl.addEventListener('dragend', this.dragEndHandler.bind(this));
+
   
       this.renderTodos();
     }
   
+// Drag start event handler
+dragStartHandler(e) {
+  const todoItem = e.target.closest('.todo-item');
+  if (todoItem) {
+    e.dataTransfer.setData('text/plain', todoItem.id);
+  }
+}
+
+// Drag over event handler
+dragOverHandler(e) {
+  e.preventDefault();
+  const afterElement = this.getDragAfterElement(this.todoUl, e.clientY);
+  const draggable = document.querySelector('.ondrag');
+  if (afterElement == null) {
+    this.todoUl.appendChild(draggable);
+  } else {
+    this.todoUl.insertBefore(draggable, afterElement);
+  }
+}
+
+// Drag end event handler
+dragEndHandler() {
+  const draggable = document.querySelector('.ondrag');
+  if (draggable) {
+    draggable.classList.remove('ondrag');
+  }
+}
+
     // counts active todo items
     activeTodoCount() {
       const count = this.actions.querySelector('#count');
@@ -178,7 +212,7 @@ class Theme {
       this.todoUl.addEventListener('dragenter', (e) => {
         e.preventDefault();
         const afterElement = this.getDragAfterElement(this.todoUl, e.clientY);
-        const draggable = document.querySelector('.ondrag');
+        const draggable = document.querySelector('ondrag');
         if (afterElement == null) {
           this.todoUl.appendChild(draggable);
         } else {
