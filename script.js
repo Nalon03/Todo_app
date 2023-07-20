@@ -1,31 +1,31 @@
 class Theme {
-    constructor() {
+  constructor() {
       this.html = document.documentElement;
-      this.html.dataset.theme = 'theme-light';
+      this.html.dataset.theme = `theme-light`;
       this.themeBtn = document.querySelector('.theme-btn');
-  
-      this.themeBtn.addEventListener('click', this.toggleTheme.bind(this));
-    }
-  
-    // Theme changer
-    toggleTheme() {
-      const themeIcon = this.themeBtn.querySelector('img');
-  
-      if (this.themeBtn.classList.contains('light')) {
-        this.themeBtn.classList.remove('light');
-        this.themeBtn.classList.add('dark');
-        this.html.dataset.theme = 'theme-dark';
-        themeIcon.src = './images/icon-sun.svg';
-        themeIcon.alt = 'moon svg';
-      } else {
-        this.themeBtn.classList.remove('dark');
-        this.themeBtn.classList.add('light');
-        this.html.dataset.theme = 'theme-light';
-        themeIcon.src = './images/icon-moon.svg';
-        themeIcon.alt = 'sun svg';
-      }
-    }
+       this.themeBtn.addEventListener('click', this.toggleTheme.bind(this));
+      
   }
+
+  // Theme changer
+  toggleTheme() {
+      const themeIcon = this.themeBtn.querySelector('img');
+
+      if (this.themeBtn.classList.contains('light')) {
+          this.themeBtn.classList.remove('light');
+          this.themeBtn.classList.add('dark');
+          this.html.dataset.theme = 'theme-dark';
+          themeIcon.src = './images/icon-sun.svg';
+          themeIcon.alt = 'moon svg';
+      } else {
+          this.themeBtn.classList.remove('dark');
+          this.themeBtn.classList.add('light');
+          this.html.dataset.theme = 'theme-light';
+          themeIcon.src = './images/icon-moon.svg';
+          themeIcon.alt = 'sun svg';
+      }
+  }
+}
   
   class Components {
     constructor() {
@@ -104,6 +104,15 @@ class Theme {
       this.clearCompletedBtn.addEventListener('click', this.clearCompletedHandler.bind(this));
       this.filter = new Filters(this);
 
+      // Use the appropriate event listener based on the device
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const eventStart = isMobile ? 'touchstart' : 'click';
+    const eventMove = isMobile ? 'touchmove' : 'mousemove';
+    const eventEnd = isMobile ? 'touchend' : 'mouseup';
+
+    this.addTodoBtn.addEventListener(eventStart, this.addTodo.bind(this));
+
+      
       // Initialize the drag and drop functionality
     this.todoUl.addEventListener('dragstart', this.dragStartHandler.bind(this));
     this.todoUl.addEventListener('dragover', this.dragOverHandler.bind(this));
@@ -232,6 +241,8 @@ class Theme {
             this.activeTodoCount();
             this.filter.filterHandler();
             this.updateLocalStorage();
+
+            
           });
         }
       });
@@ -255,8 +266,12 @@ class Theme {
         } else {
           this.todoUl.insertBefore(draggable, afterElement);
         }
+
+        
       });
-  
+       
+
+
       this.updateLocalStorage();
     }
   
