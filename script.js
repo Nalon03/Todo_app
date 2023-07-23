@@ -100,26 +100,23 @@ class Theme {
     constructor() {
       super();
       this.addTodoBtn = document.querySelector('.add-todo');
-      this.addTodoBtn.addEventListener('click', this.addTodo.bind(this));
       this.clearCompletedBtn.addEventListener('click', this.clearCompletedHandler.bind(this));
       this.filter = new Filters(this);
-
+  
       // Use the appropriate event listener based on the device
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const eventStart = isMobile ? 'touchstart' : 'click';
-    const eventMove = isMobile ? 'touchmove' : 'mousemove';
-    const eventEnd = isMobile ? 'touchend' : 'mouseup';
-
-    this.addTodoBtn.addEventListener(eventStart, this.addTodo.bind(this));
-
-      
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const eventStart = isMobile ? 'touchstart' : 'click';
+  
+      // Attach event listeners for addTodoBtn using the appropriate event
+      this.addTodoBtn.addEventListener(eventStart, this.addTodo.bind(this));
+  
       // Initialize the drag and drop functionality
-    this.todoUl.addEventListener('dragstart', this.dragStartHandler.bind(this));
-    this.todoUl.addEventListener('dragover', this.dragOverHandler.bind(this));
-    this.todoUl.addEventListener('dragend', this.dragEndHandler.bind(this));
-    this.todoUl.addEventListener('touchstart', this.touchStartHandler.bind(this));
-    this.todoUl.addEventListener('touchmove', this.touchMoveHandler.bind(this));
-    this.todoUl.addEventListener('touchend', this.touchEndHandler.bind(this));
+      this.todoUl.addEventListener('dragstart', this.dragStartHandler.bind(this));
+      this.todoUl.addEventListener('dragover', this.dragOverHandler.bind(this));
+      this.todoUl.addEventListener('dragend', this.dragEndHandler.bind(this));
+      this.todoUl.addEventListener(eventStart, this.touchStartHandler.bind(this));
+      this.todoUl.addEventListener('touchmove', this.touchMoveHandler.bind(this));
+      this.todoUl.addEventListener('touchend', this.touchEndHandler.bind(this));
 
       this.renderTodos();
     }
@@ -153,14 +150,14 @@ class Theme {
   }
 
   // Touch start event handler
-  touchStartHandler(e) {
-    const todoItem = e.target.closest('.todo-item');
-    if (todoItem) {
-      e.preventDefault();
-      this.touchInitialPosition = e.touches[0].clientY;
-      todoItem.classList.add('ondrag');
-    }
+touchStartHandler(e) {
+  const todoItem = e.target.closest('.todo-item');
+  if (todoItem) {
+    e.preventDefault();
+    this.touchInitialPosition = e.clientY;
+    todoItem.classList.add('ondrag');
   }
+}
 
   // Touch move event handler
   touchMoveHandler(e) {
@@ -462,3 +459,4 @@ renderTodos() {
   }
   
   App.init();
+
