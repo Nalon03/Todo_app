@@ -155,14 +155,13 @@ class Theme {
   }
 
   // Touch start event handler
-touchStartHandler(e) {
-  const todoItem = e.target.closest('.todo-item');
-  if (todoItem) {
-    e.preventDefault();
-    this.touchInitialPosition = e.clientY;
-    todoItem.classList.add('ondrag');
+  touchStartHandler(e) {
+    const todoItem = e.target.closest('.todo-item');
+    if (todoItem) {
+      this.touchInitialPosition = e.clientY;
+      todoItem.classList.add('ondrag');
+    }
   }
-}
 
   // Touch move event handler
   touchMoveHandler(e) {
