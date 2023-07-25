@@ -1,3 +1,8 @@
+// Helper function to detect if the device is a mobile device
+function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
 class Theme {
   constructor() {
       this.html = document.documentElement;

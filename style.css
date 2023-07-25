@@ -6,8 +6,7 @@
     --bg-color: hsl(235, 21%, 11%);
     --card-bg: hsl(235, 24%, 19%);
     --text-color: hsl(0, 0%, 73%);
-    --inactive-color: hsl(234, 11%, 52%);
-    --active-color: hsl(234, 39%, 85%);
+   
     --hover-color: hsl(236, 33%, 92%);
     --check-color: hsl(233, 14%, 35%);
     --shadow-color: hsla(0, 0%, 7%, 0.877);
@@ -20,8 +19,6 @@
     --bg-color: hsl(236, 33%, 92%);
     --card-bg: hsl(0, 0%, 98%);
     --text-color: hsl(0, 0%, 26%);
-    --inactive-color: hsl(236, 9%, 61%);
-    --active-color: hsl(220, 98%, 61%);
     --hover-color: hsl(235, 19%, 35%);
     --check-color: hsl(233, 11%, 84%);
     --shadow-color: hsla(240, 5%, 85%, 0.603);
@@ -684,12 +681,12 @@
 }
 
 .scrollable::-webkit-scrollbar-thumb {
-  background-color: #888; /* Set the color of the scrollbar thumb */
+  background-color: #f8f5f5; /* Set the color of the scrollbar thumb */
   border-radius: 4px; /* Round the corners of the scrollbar thumb */
 }
 
 .scrollable::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Set the color of the scrollbar thumb on hover */
+  background-color: #faf9f9; /* Set the color of the scrollbar thumb on hover */
 }
 
 .scrollable::-webkit-scrollbar-track {
@@ -697,5 +694,5 @@
 }
 
 .scrollable::-webkit-scrollbar-track:hover {
-  background-color: #ddd; /* Set the color of the scrollbar track on hover */
+  background-color: #f1f1f1; /* Set the color of the scrollbar track on hover */
 }
