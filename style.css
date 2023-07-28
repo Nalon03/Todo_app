@@ -35,6 +35,7 @@
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     font-family: "Josefin Sans", sans-serif;
+    color: var(--text-color);
   }
 
   a,
@@ -675,7 +676,7 @@
   display: flex;
   flex-direction: column;
   max-height: 400px; /* Set the desired max height for the container */
-  overflow-y: scroll; /* Add a vertical scroll bar */
+  overflow-y:auto; /* Add a vertical scroll bar */
 }
 
 .scrollable::-webkit-scrollbar {
