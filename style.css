@@ -673,6 +673,7 @@
 }
 
 
+/* Common styles for all screen sizes */
 .todo-container {
   display: flex;
   flex-direction: column;
@@ -680,35 +681,19 @@
   overflow-y: scroll; /* Add a vertical scroll bar */
 }
 
-/* Custom styles for the scrollbar on small screens (e.g., phones) */
-@media screen and (max-width: 767px) {
-  .todo-container {
-    scrollbar-width: thin; /* Set the width of the scrollbar */
-  }
-
-  /* Firefox supports a different syntax for scrollbar customization */
-  .todo-container::-webkit-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
-  }
-
-  .todo-container::-webkit-scrollbar-thumb {
-    background-color: #f8f5f5; /* Set the color of the scrollbar thumb */
-    border-radius: 4px; /* Round the corners of the scrollbar thumb */
-  }
-
-  .todo-container::-webkit-scrollbar-thumb:hover {
-    background-color: #faf9f9; /* Set the color of the scrollbar thumb on hover */
-  }
-
-  .todo-container::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Set the color of the scrollbar track */
-  }
-
-  .todo-container::-webkit-scrollbar-track:hover {
-    background-color: #f1f1f1; /* Set the color of the scrollbar track on hover */
+/* Enable drag and drop on large screens and non-touch devices */
+@media screen and (min-width: 768px) and (hover: hover) {
+  .todo-item {
+    touch-action: none; /* Disable default touch behavior */
   }
 }
 
+/* Styles for small screens (e.g., phones) where scrolling is needed */
+@media screen and (max-width: 767px) {
+  .todo-item {
+    pointer-events: none; /* Disable pointer events to prevent drag and drop */
+  }
+}
 
 .scrollable::-webkit-scrollbar {
   width: 8px; /* Set the width of the scrollbar */
