@@ -27,11 +27,7 @@
     --bg-img-desktop: url(./images/bg-desktop-light.jpg);
   }
 
-  html, body {
-    height: 100%;
-  }
   
-
 
   * {
     margin: 0;
@@ -635,12 +631,6 @@
 
 /* Small screens (e.g., Nest Hub) */
 @media screen and (max-width: 767px) {
-
-  .todo-container {
-    max-height: 400px; /* Set the desired max height for the container */
-    overflow-y: auto; /* Add a vertical scroll bar */
-  }
-
   body {
     background-image: var(--bg-img-mobile);
     background-color: var(--bg-color);
@@ -687,8 +677,38 @@
   display: flex;
   flex-direction: column;
   max-height: 400px; /* Set the desired max height for the container */
-  overflow-y:auto; /* Add a vertical scroll bar */
+  overflow-y: scroll; /* Add a vertical scroll bar */
 }
+
+/* Custom styles for the scrollbar on small screens (e.g., phones) */
+@media screen and (max-width: 767px) {
+  .todo-container {
+    scrollbar-width: thin; /* Set the width of the scrollbar */
+  }
+
+  /* Firefox supports a different syntax for scrollbar customization */
+  .todo-container::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+
+  .todo-container::-webkit-scrollbar-thumb {
+    background-color: #f8f5f5; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Round the corners of the scrollbar thumb */
+  }
+
+  .todo-container::-webkit-scrollbar-thumb:hover {
+    background-color: #faf9f9; /* Set the color of the scrollbar thumb on hover */
+  }
+
+  .todo-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Set the color of the scrollbar track */
+  }
+
+  .todo-container::-webkit-scrollbar-track:hover {
+    background-color: #f1f1f1; /* Set the color of the scrollbar track on hover */
+  }
+}
+
 
 .scrollable::-webkit-scrollbar {
   width: 8px; /* Set the width of the scrollbar */
