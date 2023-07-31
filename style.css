@@ -673,26 +673,11 @@
 }
 
 
-/* Common styles for all screen sizes */
 .todo-container {
   display: flex;
   flex-direction: column;
   max-height: 400px; /* Set the desired max height for the container */
-  overflow-y: scroll; /* Add a vertical scroll bar */
-}
-
-/* Enable drag and drop on large screens and non-touch devices */
-@media screen and (min-width: 768px) and (hover: hover) {
-  .todo-item {
-    touch-action: none; /* Disable default touch behavior */
-  }
-}
-
-/* Styles for small screens (e.g., phones) where scrolling is needed */
-@media screen and (max-width: 767px) {
-  .todo-item {
-    pointer-events: none; /* Disable pointer events to prevent drag and drop */
-  }
+  overflow-y:auto; /* Add a vertical scroll bar */
 }
 
 .scrollable::-webkit-scrollbar {
