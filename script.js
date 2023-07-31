@@ -170,38 +170,28 @@ class Theme {
   }
 
   // Touch start event handler
-touchStartHandler(e) {
-  const todoItem = e.target.closest('.todo-item');
-  if (todoItem && !todoItem.classList.contains('ondrag')) {
-    this.touchInitialPosition = e.touches[0].clientY;
-  }
-}
-
-
-  // Touch move event handler
-  // Touch move event handler
-touchMoveHandler(e) {
-  const todoItem = document.querySelector('.ondrag');
-  if (todoItem) {
-    const touchY = e.touches[0].clientY;
-    const touchDistance = touchY - this.touchInitialPosition;
-    const threshold = 10; // Adjust the threshold as needed
-  
-    if (Math.abs(touchDistance) >= threshold) {
-      // User is scrolling, allow default behavior
-      return;
-    }
-  
-    e.preventDefault();
-    const afterElement = this.getDragAfterElement(this.todoUl, touchY);
-    if (afterElement == null) {
-      this.todoUl.appendChild(todoItem);
-    } else {
-      this.todoUl.insertBefore(todoItem, afterElement);
+  touchStartHandler(e) {
+    const todoItem = e.target.closest('.todo-item');
+    if (todoItem) {
+      this.touchInitialPosition = e.clientY;
+      todoItem.classList.add('ondrag');
     }
   }
-}
 
+  // Touch move event handler
+  touchMoveHandler(e) {
+    const todoItem = document.querySelector('.ondrag');
+    if (todoItem) {
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      const afterElement = this.getDragAfterElement(this.todoUl, touchY);
+      if (afterElement == null) {
+        this.todoUl.appendChild(todoItem);
+      } else {
+        this.todoUl.insertBefore(todoItem, afterElement);
+      }
+    }
+  }
 
   // Touch end event handler
   touchEndHandler() {
