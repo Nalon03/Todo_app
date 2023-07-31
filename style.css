@@ -543,12 +543,57 @@
   }
 }
 
+
+body {
+  background-image: var(--bg-img-mobile);
+  background-color: var(--bg-color);
+}
+section.wrapper {
+  width: 90%;
+  padding: 2rem 0;
+}
+header h1 {
+  font-size: 1.5rem;
+}
+form {
+  padding: 0.5rem 1rem;
+}
+.todo-item {
+  height: 2.5rem;
+}
+.todo-item > .btn {
+  width: 30px;
+  height: 30px;
+}
+.todo {
+  font-size: 0.9rem;
+}
+.actions {
+  height: 2.5rem;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+}
+.filters {
+  height: 2.5rem;
+  padding: 0 2rem;
+  font-size: 0.8rem;
+}
+.drag-help-info {
+  font-size: 0.8rem;
+}
+
+
 /* Small screens (e.g., Galaxy Fold phones, Nest Hub) */
 @media screen and (max-width: 767px) {
   body {
     background-image: var(--bg-img-mobile);
     background-color: var(--bg-color);
   }
+
+  .todo-container {
+    overflow-y: auto;
+  }
+
   section.wrapper {
     width: 90%;
     padding: 2rem 0;
