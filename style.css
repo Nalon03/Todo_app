@@ -550,7 +550,7 @@
     background-color: var(--bg-color);
   }
 
-.todo-container {
+  .todo-container {
     overflow-y: auto;
   }
 
