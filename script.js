@@ -9,7 +9,18 @@ class Theme {
       this.html.dataset.theme = `theme-light`;
       this.themeBtn = document.querySelector('.theme-btn');
        this.themeBtn.addEventListener('click', this.toggleTheme.bind(this));
+
       
+       const themePreference = localStorage.getItem('themePreference');
+
+       // If themePreference is set, apply the saved theme
+       if (themePreference === 'dark') {
+         this.themeBtn.classList.add('dark');
+         this.html.dataset.theme = 'theme-dark';
+       } else {
+         this.themeBtn.classList.remove('dark');
+         this.html.dataset.theme = 'theme-light';
+       }
   }
 
   // Theme changer
@@ -29,7 +40,11 @@ class Theme {
           themeIcon.src = './images/icon-moon.svg';
           themeIcon.alt = 'sun svg';
       }
+      
+      localStorage.setItem('themePreference', this.themeBtn.classList.contains('dark') ? 'dark' : 'light');
+
   }
+
 }
   
   class Components {
