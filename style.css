@@ -27,7 +27,11 @@
     --bg-img-desktop: url(./images/bg-desktop-light.jpg);
   }
 
+  html, body {
+    height: 100%;
+  }
   
+
 
   * {
     margin: 0;
@@ -631,6 +635,12 @@
 
 /* Small screens (e.g., Nest Hub) */
 @media screen and (max-width: 767px) {
+
+  .todo-container {
+    max-height: 400px; /* Set the desired max height for the container */
+    overflow-y: auto; /* Add a vertical scroll bar */
+  }
+
   body {
     background-image: var(--bg-img-mobile);
     background-color: var(--bg-color);
