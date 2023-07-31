@@ -549,6 +549,11 @@
     background-image: var(--bg-img-mobile);
     background-color: var(--bg-color);
   }
+
+.todo-container {
+    overflow-y: auto;
+  }
+
   section.wrapper {
     width: 90%;
     padding: 2rem 0;
