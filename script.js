@@ -40,7 +40,7 @@ class Theme {
           themeIcon.src = './images/icon-moon.svg';
           themeIcon.alt = 'sun svg';
       }
-      
+
       localStorage.setItem('themePreference', this.themeBtn.classList.contains('dark') ? 'dark' : 'light');
 
   }
@@ -179,19 +179,22 @@ class Theme {
   }
 
   // Touch move event handler
-  touchMoveHandler(e) {
-    const todoItem = document.querySelector('.ondrag');
-    if (todoItem) {
+touchMoveHandler(e) {
+  const todoItem = document.querySelector('.ondrag');
+  if (todoItem) {
+    if (e.cancelable) {
       e.preventDefault();
-      const touchY = e.touches[0].clientY;
-      const afterElement = this.getDragAfterElement(this.todoUl, touchY);
-      if (afterElement == null) {
-        this.todoUl.appendChild(todoItem);
-      } else {
-        this.todoUl.insertBefore(todoItem, afterElement);
-      }
+    }
+    const touchY = e.touches[0].clientY;
+    const afterElement = this.getDragAfterElement(this.todoUl, touchY);
+    if (afterElement == null) {
+      this.todoUl.appendChild(todoItem);
+    } else {
+      this.todoUl.insertBefore(todoItem, afterElement);
     }
   }
+}
+
 
   // Touch end event handler
   touchEndHandler() {
