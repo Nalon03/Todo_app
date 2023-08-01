@@ -685,3 +685,23 @@
   overflow-y:auto; /* Add a vertical scroll bar */
 }
 
+.scrollable::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #f8f5f5; /* Set the color of the scrollbar thumb */
+  border-radius: 4px; /* Round the corners of the scrollbar thumb */
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #faf9f9; /* Set the color of the scrollbar thumb on hover */
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+}
+
+.scrollable::-webkit-scrollbar-track:hover {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track on hover */
+}

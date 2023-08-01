@@ -178,10 +178,11 @@ class Theme {
     }
   }
 
+  // Touch move event handler
   touchMoveHandler(e) {
     const todoItem = document.querySelector('.ondrag');
     if (todoItem) {
-      e.preventDefault(); // Add this line to prevent default touchmove behavior
+      e.preventDefault();
       const touchY = e.touches[0].clientY;
       const afterElement = this.getDragAfterElement(this.todoUl, touchY);
       if (afterElement == null) {
@@ -191,7 +192,6 @@ class Theme {
       }
     }
   }
-  
 
   // Touch end event handler
   touchEndHandler() {
