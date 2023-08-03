@@ -179,19 +179,20 @@ class Theme {
   }
 
   // Touch move event handler
-  touchMoveHandler(e) {
-    const todoItem = document.querySelector('.ondrag');
-    if (todoItem) {
-      e.preventDefault();
-      const touchY = e.touches[0].clientY;
-      const afterElement = this.getDragAfterElement(this.todoUl, touchY);
-      if (afterElement == null) {
-        this.todoUl.appendChild(todoItem);
-      } else {
-        this.todoUl.insertBefore(todoItem, afterElement);
-      }
+touchMoveHandler(e) {
+  const todoItem = document.querySelector('.ondrag');
+  if (todoItem) {
+    const touchY = e.touches[0].clientY;
+    const afterElement = this.getDragAfterElement(this.todoUl, touchY);
+    if (afterElement == null) {
+      this.todoUl.appendChild(todoItem);
+    } else {
+      this.todoUl.insertBefore(todoItem, afterElement);
     }
+    e.preventDefault(); // Apply preventDefault() only during dragging
   }
+}
+
 
   // Touch end event handler
   touchEndHandler() {
