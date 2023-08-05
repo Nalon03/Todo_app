@@ -690,18 +690,34 @@
 }
 
 .scrollable::-webkit-scrollbar-thumb {
-  background-color: #f8f5f5; /* Set the color of the scrollbar thumb */
+  background-color:var(--bg-color); /* Set the color of the scrollbar thumb */
   border-radius: 4px; /* Round the corners of the scrollbar thumb */
 }
 
 .scrollable::-webkit-scrollbar-thumb:hover {
-  background-color: #faf9f9; /* Set the color of the scrollbar thumb on hover */
+  background-color:var(--bg-color); /* Set the color of the scrollbar thumb on hover */
 }
 
 .scrollable::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+  background-color:var(--bg-color) /* Set the color of the scrollbar track */
 }
 
 .scrollable::-webkit-scrollbar-track:hover {
-  background-color: #f1f1f1; /* Set the color of the scrollbar track on hover */
+  background-color:var(--bg-color); /* Set the color of the scrollbar track on hover */
+}
+
+.filters {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  z-index: 1;
+}
+
+.actions {
+  position: sticky;
+  bottom: 0px; /* Adjust the position as needed */
+  width: 100%;
+  background-color: var(--bg-color);
+  z-index: 1;
 }
