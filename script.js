@@ -214,7 +214,7 @@ class Theme {
   
     // Adding todo
     addTodo() {
-      event.preventDefault();
+      e.preventDefault();
       const todoInput = document.getElementById('todo-input');
       const text = todoInput.value.trim();
       if (text === '') return;
