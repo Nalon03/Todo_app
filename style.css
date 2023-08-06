@@ -63,6 +63,7 @@
     background-position: top left;
     background-size: contain;
     min-height: 100vh;
+    overflow: hidden;
   }
 
   main {
@@ -101,7 +102,7 @@
   section.wrapper > * {
     width: 100%;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   section.wrapper > *:not(header):not(p) {
@@ -438,11 +439,11 @@
   }
 
   .drag-help-info {
-    margin-top: 2rem;
+    margin-top:0.8rem;
     text-align: center;
     color: var(--inactive-color);
-    opacity: 0.8;
-    font-size: 0.9rem;
+    opacity: 0.9;
+    font-size: 0.7rem;
   }
 
   @media all and (min-width: 56.88rem) {
@@ -684,26 +685,30 @@
   max-height: 400px; /* Set the desired max height for the container */
   overflow-y:auto; /* Add a vertical scroll bar */
 }
-
-.scrollable::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
+/* Change the color of the scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; 
 }
 
-.scrollable::-webkit-scrollbar-thumb {
-  background-color:var(--bg-color); /* Set the color of the scrollbar thumb */
-  border-radius: 4px; /* Round the corners of the scrollbar thumb */
+/* Todo container scrollbar*/
+::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
 }
 
-.scrollable::-webkit-scrollbar-thumb:hover {
-  background-color:var(--bg-color); /* Set the color of the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb {
+  background-color: #8ea1c9;
 }
 
-.scrollable::-webkit-scrollbar-track {
-  background-color:var(--bg-color) /* Set the color of the scrollbar track */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+/*web scrollbar*/
+body::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
 }
 
-.scrollable::-webkit-scrollbar-track:hover {
-  background-color:var(--bg-color); /* Set the color of the scrollbar track on hover */
+body::-webkit-scrollbar-thumb {
+  background-color:#3a7bfd;
 }
 
 .filters {
