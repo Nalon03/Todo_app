@@ -94,11 +94,11 @@ class Theme {
       }
     }
   
-    // generating todo item template
-    todoGenerator(text) {
+    todoGenerator(text, completed = false) {
       const todoItem = document.createElement('div');
       todoItem.className = 'todo-item';
       todoItem.draggable = true;
+      todoItem.dataset.completed = completed;
       todoItem.innerHTML = `
         <label class="check-label">
           <input type="checkbox">
@@ -201,8 +201,6 @@ class Theme {
     }
   }
 
-
-
     // counts active todo items
     activeTodoCount() {
       const count = this.actions.querySelector('#count');
@@ -227,15 +225,19 @@ class Theme {
       todoInput.value = '';
   
       todoItem.addEventListener('click', (e) => {
-        if (e.target === checkLabel || checkLabel.querySelector('span') || checkLabel.querySelector('input')) {
-          if (checkLabel.querySelector('input').checked) {
-            todoItem.classList.add('strike');
-          } else {
-            todoItem.classList.remove('strike');
-          }
-          this.activeTodoCount();
-          this.filter.filterHandler();
-        }
+   if (e.target === checkLabel || checkLabel.querySelector('span') || checkLabel.querySelector('input')) {
+     if (checkLabel.querySelector('input').checked) {
+    todoItem.classList.add('strike');
+    this.filter.updateFilter('completed', todoItem);
+  } else {
+    todoItem.classList.remove('strike');
+    this.filter.updateFilter('live', todoItem);
+  }
+  this.activeTodoCount();
+  this.filter.filterHandler();
+  this.updateLocalStorage();
+}
+
   
         if (e.target === todoLi) {
           const isStrike = todoItem.classList.contains('strike');
@@ -284,11 +286,8 @@ class Theme {
           this.todoUl.insertBefore(draggable, afterElement);
         }
 
-        
       });
        
-
-
       this.updateLocalStorage();
     }
   
@@ -439,34 +438,43 @@ renderTodos() {
     this.filterHandler(refValue);
   }
   
-    filterHandler(className = 'all') {
-      const allTodo = [...this.todo.todoUl.querySelectorAll('.todo-item')];
-  
-      switch (className) {
-        case 'completed':
-          allTodo.forEach((todo) => {
-            if (todo.classList.contains('strike')) {
-              todo.style.display = 'flex';
-            } else {
-              todo.style.display = 'none';
-            }
-          });
-          break;
-        case 'live':
-          allTodo.forEach((todo) => {
-            if (!todo.classList.contains('strike')) {
-              todo.style.display = 'flex';
-            } else {
-              todo.style.display = 'none';
-            }
-          });
-          break;
-        case 'all':
-          allTodo.forEach((todo) => {
-            todo.style.display = 'flex';
-          });
-          break;
+  filterHandler(className) {
+    const allTodo = [...this.todo.todoUl.querySelectorAll('.todo-item')];
+
+    allTodo.forEach((todo) => {
+      if (className === 'all') {
+        todo.style.display = 'flex';
+      } else if (className === 'live') {
+        if (!todo.classList.contains('strike')) {
+          todo.style.display = 'flex';
+        } else {
+          todo.style.display = 'none';
+        }
+      } else if (className === 'completed') {
+        if (todo.classList.contains('strike')) {
+          todo.style.display = 'flex';
+        } else {
+          todo.style.display = 'none';
+        }
       }
+    });
+
+    this.currentFilter = className; // Update the current filter state
+  }
+    updateFilter(targetFilter, todoItem) {
+      const allBtn = this.todo.filterBox.querySelector('.all');
+      const liveBtn = this.todo.filterBox.querySelector('.live');
+      const completedBtn = this.todo.filterBox.querySelector('.completed-btn');
+  
+      if (targetFilter === 'completed') {
+        liveBtn?.classList.remove('active');
+        completedBtn?.classList.add('active');
+      } else if (targetFilter === 'live') {
+        completedBtn?.classList.remove('active');
+        liveBtn?.classList.add('active');
+      }
+  
+      todoItem.style.display = 'none'; // Hide the item in the active filter
     }
   }
   

@@ -206,12 +206,6 @@
     font-size: 0.8rem;
   }
 
-  form #todo-input:focus-visible {
-    outline: 1px solid #777a92;
-    outline-offset: -1px;
-    background-color: var(--card-bg);
-  }
-
   form #todo-input:active {
     background-color: var(--card-bg);
   }
